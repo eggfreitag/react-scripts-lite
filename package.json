@@ -23,7 +23,6 @@
   "homepage": "https://github.com/eggfreitag/react-scripts-lite#readme",
   "dependencies": {
     "dotenv-webpack": "^8.0.0",
-    "fs": "^0.0.1-security",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.2",
     "mini-css-extract-plugin": "^2.6.1",
