@@ -5,7 +5,7 @@ process.on("unhandledRejection", (err) => {
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 
-const configFactory = require("../config/webpack.config.js");
+const configFactory = require("../config/webpackDevServer.config");
 const webpackConfig = configFactory("development");
 const compiler = webpack(webpackConfig);
 const devServerOptions = { ...webpackConfig.devServer };

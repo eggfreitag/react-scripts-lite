@@ -11,10 +11,10 @@ module.exports = (node_env) => {
     target: "web",
     mode: isDevEnv ? "development" : isProdEnv && "production",
     entry: {
-      index: path.resolve(__dirname, "../../../src/index.jsx"),
+      index: path.join("/src/index.jsx"),
     },
     output: {
-      path: path.resolve(__dirname, "../../../build"),
+      path: path.join("/build"),
       filename: "static/js/[name].js",
       assetModuleFilename: "static/media/[name][ext]",
     },
@@ -79,14 +79,23 @@ module.exports = (node_env) => {
         },
       ],
     },
+    devServer: {
+      port: "3000",
+      static: {
+        directory: path.join("/public"),
+      },
+      allowedHosts: ["all"],
+      open: true,
+      liveReload: true,
+    },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "../../../public/index.html"),
+        template: path.join("/public", "index.html"),
       }),
       new MiniCssExtractPlugin({
         filename: "static/css/[name].css",
       }),
-      new dotenv({}),
+      new dotenv(),
     ],
   };
 };
