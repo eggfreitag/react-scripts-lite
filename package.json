@@ -1,0 +1,39 @@
+{
+  "name": "react-scripts-lite",
+  "version": "1.0.0",
+  "description": "react-scripts-lite",
+  "main": "./bin/react-scripts-lite.js",
+  "bin": {
+    "react-scripts-lite": "./bin/react-scripts-lite.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eggfreitag/react-scripts-lite.git"
+  },
+  "keywords": [
+    "create-react-app",
+    "react-scripts",
+    "react",
+    "boilerplate"
+  ],
+  "author": "eggfreitag",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eggfreitag/react-scripts-lite/issues"
+  },
+  "homepage": "https://github.com/eggfreitag/react-scripts-lite#readme",
+  "dependencies": {
+    "dotenv-webpack": "^8.0.0",
+    "fs": "^0.0.1-security",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.2",
+    "mini-css-extract-plugin": "^2.6.1",
+    "path": "^0.12.7",
+    "process": "^0.11.10",
+    "webpack": "^5.73.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
