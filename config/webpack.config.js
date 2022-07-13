@@ -86,9 +86,7 @@ module.exports = (node_env) => {
       new MiniCssExtractPlugin({
         filename: "static/css/[name].css",
       }),
-      new dotenv({
-        // path: path.resolve(__dirname, "/.env")
-      }),
+      new dotenv({}),
     ],
   };
 };
