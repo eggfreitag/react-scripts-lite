@@ -18,4 +18,6 @@ if (!script) {
   process.exit(1);
 }
 
-const result = spawnSync("node", [`../react-scripts-lite/scripts/${script}.js`]);
+const result = spawnSync("node", [
+  path.resolve(__dirname, `../scripts/${script}.js`),
+]);
