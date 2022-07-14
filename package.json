@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-lite",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Configuration of webpack and scripts for Create-React-App-Lite",
   "bin": {
     "react-scripts-lite": "./bin/react-scripts-lite.js"
@@ -24,8 +24,10 @@
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^8.2.5",
+    "chalk": "^4.1.2",
     "css-loader": "^6.7.1",
     "dotenv-webpack": "^8.0.0",
+    "fs": "^0.0.1-security",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.2",
     "mini-css-extract-plugin": "^2.6.1",

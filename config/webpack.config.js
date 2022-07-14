@@ -2,6 +2,7 @@ const path = require("path");
 const dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const cssRules = require("./cssRules");
 
 module.exports = (node_env) => {
   const isDevEnv = node_env === "development";
@@ -11,7 +12,7 @@ module.exports = (node_env) => {
     target: "web",
     mode: isDevEnv ? "development" : isProdEnv && "production",
     entry: {
-      index: path.resolve(__dirname, "../../../src/index.jsx"),
+      index: path.resolve(__dirname, "../../../src/index"),
     },
     output: {
       path: path.resolve(__dirname, "../../../build"),
@@ -34,45 +35,7 @@ module.exports = (node_env) => {
             },
           },
         },
-        {
-          test: /\.css$/i,
-          exclude: /\.module\.css$/,
-          use: [
-            isDevEnv ? "style-loader" : MiniCssExtractPlugin.loader,
-            { loader: "css-loader", options: { importLoaders: 1 } },
-            "postcss-loader",
-          ],
-        },
-        {
-          test: /\.module\.css$/,
-          use: [
-            isDevEnv ? "style-loader" : MiniCssExtractPlugin.loader,
-            {
-              loader: "css-loader",
-              options: { modules: true, importLoaders: 1 },
-            },
-            "postcss-loader",
-          ],
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            isDevEnv ? "style-loader" : MiniCssExtractPlugin.loader,
-            {
-              loader: "css-loader",
-              options: {
-                importLoaders: 2,
-              },
-            },
-            "resolve-url-loader",
-            {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true,
-              },
-            },
-          ],
-        },
+        ...cssRules(node_env),
         {
           test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ico$/, /\.svg$/],
           type: "asset",
@@ -82,11 +45,12 @@ module.exports = (node_env) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "../../../public/index.html"),
+        favicon: path.resolve(__dirname, "../../../public/favicon.ico"),
       }),
       new MiniCssExtractPlugin({
         filename: "static/css/[name].css",
       }),
-      new dotenv({}),
+      new dotenv(),
     ],
   };
 };
