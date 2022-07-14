@@ -3,13 +3,12 @@ process.on("unhandledRejection", (err) => {
 });
 
 const webpack = require("webpack");
-
-const configFactory = require("../config/webpack.config");
+const configFactory = require("../config/webpack.config.js");
 const webpackConfig = configFactory("production");
 const compiler = webpack(webpackConfig);
 
 compiler.run((err, stats) => {
   if (err || stats.hasErrors()) {
-    throw err;
+    console.log(err);
   }
 });
