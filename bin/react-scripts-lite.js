@@ -4,10 +4,12 @@ process.on("unhandledRejection", (err) => {
   throw err;
 });
 
-const spawnSync = require("child_process").spawnSync;
-const chalk = require("chalk");
-const path = require("path");
+import { spawnSync } from "child_process";
+import { fileURLToPath } from "url";
+import chalk from "chalk";
+import path from "path";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const scriptIndex = args.findIndex(
   (script) => script === "start" || script === "build" || script === "test"
