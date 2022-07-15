@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-lite",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Configuration of webpack and scripts for Create-React-App-Lite",
   "bin": {
     "react-scripts-lite": "./bin/react-scripts-lite.mjs"
