@@ -23,6 +23,7 @@ if (!script) {
 
 const result = spawnSync("node", [
   path.resolve(__dirname, `../scripts/${script}.js`),
+  ...args,
 ]);
 
 if (result.status !== 0) {
@@ -30,6 +31,7 @@ if (result.status !== 0) {
     chalk.yellowBright.bold.italic("\n\n     webpack: Failed to compile\n\n")
   );
   console.log(result.stderr.toString());
+  console.log(result.stdout.toString());
 } else {
   console.log(
     chalk.yellowBright.bold.italic(
