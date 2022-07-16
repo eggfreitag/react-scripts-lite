@@ -1,7 +1,7 @@
 const dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const cssRules = require("./cssRules");
+const cssRules = require("./webpack/cssRules");
 
 module.exports = (node_env) => {
   const isDevEnv = node_env === "development";
