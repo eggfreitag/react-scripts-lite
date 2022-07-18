@@ -1,6 +1,7 @@
 const dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const cssRules = require("./webpack/cssRules");
 
 module.exports = (node_env) => {
@@ -37,6 +38,7 @@ module.exports = (node_env) => {
       static: {
         directory: "/public",
       },
+      historyApiFallback: true,
       allowedHosts: ["all"],
       open: true,
       liveReload: true,
@@ -50,6 +52,7 @@ module.exports = (node_env) => {
         filename: "static/css/[name].css",
       }),
       new dotenv(),
+      new FaviconsWebpackPlugin({ logo: "public/favicon.ico" }),
     ],
   };
 };

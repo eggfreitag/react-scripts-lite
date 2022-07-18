@@ -26,16 +26,17 @@ const result = spawnSync("node", [
   ...args,
 ]);
 
-if (result.status !== 0) {
+if (result.status !== 0 && script === "build") {
   console.log(
     chalk.yellowBright.bold.italic("\n\n     webpack: Failed to compile\n\n")
   );
-  console.log(result.stderr.toString());
-  console.log(result.stdout.toString());
-} else {
+} else if (result.status === 0 && script === "build") {
   console.log(
     chalk.yellowBright.bold.italic(
       "\n\n     webpack: Compiled Successfully!\n\n"
     )
   );
+} else {
+  console.log(result.stderr.toString());
+  console.log(result.stdout.toString());
 }
