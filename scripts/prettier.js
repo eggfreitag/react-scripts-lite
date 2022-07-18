@@ -13,6 +13,6 @@ const runCommand = (command) => {
   }
 };
 
-const lintCommand = `prettier --config config/prettier/.prettierrc.js --ignore-path config/prettier/.prettierignore --write .`;
+const lintCommand = `prettier --config node_modules/react-scripts-lite/config/prettier/.prettierrc.js --ignore-path node_modules/react-scripts-lite/config/prettier/.prettierignore --write .`;
 
 runCommand(lintCommand);
