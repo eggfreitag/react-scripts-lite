@@ -13,6 +13,6 @@ const runCommand = (command) => {
   }
 };
 
-const lintCommand = `eslint -c config/eslint/.eslintrc.js --ignore-path config/eslint/.eslintignore --fix .`;
+const lintCommand = `eslint -c node_modules/react-scripts-lite/config/eslint/.eslintrc.js --ignore-path node_modules/react-scripts-lite/config/eslint/.eslintignore --fix .`;
 
 runCommand(lintCommand);
