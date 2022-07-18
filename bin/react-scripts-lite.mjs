@@ -12,7 +12,12 @@ import path from "path";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const scriptIndex = args.findIndex(
-  (script) => script === "start" || script === "build" || script === "test"
+  (script) =>
+    script === "start" ||
+    script === "build" ||
+    script === "test" ||
+    script === "lint" ||
+    script === "prettier"
 );
 const script = scriptIndex === -1 ? null : args[scriptIndex];
 
