@@ -1,7 +1,9 @@
 const path = require("path");
 const dotenv = require("dotenv-webpack");
+const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const cssRules = require("./webpack/cssRules");
 
 module.exports = (node_env) => {
@@ -16,12 +18,31 @@ module.exports = (node_env) => {
     },
     output: {
       path: path.resolve(__dirname, "../../../build"),
-      filename: "static/js/[name].js",
-      assetModuleFilename: "static/media/[name][ext]",
+      filename: "static/js/[name].[contenthash].js",
+      assetModuleFilename: "static/media/[name][contenthash][ext]",
     },
     devtool: isDevEnv ? "eval" : isProdEnv && "source-map",
     resolve: {
       extensions: [".js", ".jsx", ".json", ".css"],
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          test: /\.js(\?.*)?$/i,
+          parallel: true,
+        }),
+        new CssMinimizerPlugin(),
+      ],
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            chunks: "initial",
+            name: "vendor",
+            enforce: true,
+          },
+        },
+      },
     },
     module: {
       rules: [
@@ -48,7 +69,7 @@ module.exports = (node_env) => {
         favicon: path.resolve(__dirname, "../../../public/favicon.ico"),
       }),
       new MiniCssExtractPlugin({
-        filename: "static/css/[name].css",
+        filename: "static/css/[name].[contenthash].css",
       }),
       new dotenv(),
     ],
