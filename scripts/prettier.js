@@ -1,3 +1,4 @@
+const path = require("path");
 const { execSync } = require("child_process");
 
 const runCommand = (command) => {
@@ -13,6 +14,13 @@ const runCommand = (command) => {
   }
 };
 
-const lintCommand = `prettier --config node_modules/react-scripts-lite/config/prettier/.prettierrc.js --ignore-path node_modules/react-scripts-lite/config/prettier/.prettierignore --write .`;
+const prettierRcPath = path.join(
+  "node_modules/react-scripts-lite/config/prettier/.prettierrc.js"
+);
+const prettierIgnorePath = path.join(
+  "node_modules/react-scripts-lite/config/prettier/.prettierignore"
+);
+
+const lintCommand = `prettier --config ${prettierRcPath} --ignore-path ${prettierIgnorePath} --write .`;
 
 runCommand(lintCommand);

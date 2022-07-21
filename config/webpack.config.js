@@ -1,10 +1,10 @@
 const path = require("path");
 const dotenv = require("dotenv-webpack");
+const cssRules = require("./webpack/cssRules");
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const cssRules = require("./webpack/cssRules");
 
 module.exports = (node_env) => {
   const isDevEnv = node_env === "development";
@@ -18,8 +18,11 @@ module.exports = (node_env) => {
     },
     output: {
       path: path.resolve(__dirname, "../../../build"),
-      filename: "static/js/[name].[contenthash].js",
-      assetModuleFilename: "static/media/[name][contenthash][ext]",
+      filename: path.join("static/js", "[name].[contenthash].js"),
+      assetModuleFilename: path.join(
+        "static/media",
+        "[name][contenthash][ext]"
+      ),
     },
     devtool: isDevEnv ? "eval" : isProdEnv && "source-map",
     resolve: {
@@ -69,7 +72,7 @@ module.exports = (node_env) => {
         favicon: path.resolve(__dirname, "../../../public/favicon.ico"),
       }),
       new MiniCssExtractPlugin({
-        filename: "static/css/[name].[contenthash].css",
+        filename: path.join("static/css", "[name].[contenthash].css"),
       }),
       new dotenv(),
     ],
