@@ -1,3 +1,4 @@
+const path = require("path");
 const { execSync } = require("child_process");
 
 const runCommand = (command) => {
@@ -12,7 +13,13 @@ const runCommand = (command) => {
     return false;
   }
 };
+const esLintRcPath = path.join(
+  "node_modules/react-scripts-lite/config/eslint/.eslintrc.js"
+);
+const esLintIgnorePath = path.join(
+  "node_modules/react-scripts-lite/config/eslint/.eslintignore"
+);
 
-const lintCommand = `eslint -c node_modules/react-scripts-lite/config/eslint/.eslintrc.js --ignore-path node_modules/react-scripts-lite/config/eslint/.eslintignore --fix .`;
+const lintCommand = `eslint -c ${esLintRcPath} --ignore-path ${esLintIgnorePath} --fix .`;
 
 runCommand(lintCommand);

@@ -8,7 +8,7 @@ const webpackConfig = configFactory("production");
 const compiler = webpack(webpackConfig);
 
 compiler.run((err, stats) => {
-  if (err || stats.hasErrors()) {
+  if (err) {
     console.log(err);
   }
 });

@@ -1,9 +1,9 @@
-const dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 const cssRules = require("./webpack/cssRules");
 
-module.exports = (node_env) => {
+module.exports = (node_env, port) => {
   const isDevEnv = node_env === "development";
   const isProdEnv = node_env === "production";
 
@@ -27,15 +27,15 @@ module.exports = (node_env) => {
         },
         ...cssRules(node_env),
         {
-          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ico$/, /\.svg$/],
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
           type: "asset",
         },
       ],
     },
     devServer: {
-      port: "3000",
+      port: port || 3000,
       static: {
-        directory: "/public",
+        directory: "public",
       },
       devMiddleware: {
         publicPath: "/",
@@ -43,17 +43,17 @@ module.exports = (node_env) => {
       historyApiFallback: true,
       allowedHosts: ["all"],
       open: true,
-      liveReload: true,
+      hot: true,
     },
+    stats: "minimal",
     plugins: [
       new HtmlWebpackPlugin({
-        template: "public/index.html",
-        favicon: "public/favicon.ico",
+        template: path.resolve("public/index.html"),
+        favicon: path.resolve("public/favicon.ico"),
       }),
       new MiniCssExtractPlugin({
-        filename: "static/css/[name].css",
+        filename: path.join("static/css", "[name].css"),
       }),
-      new dotenv(),
     ],
   };
 };
