@@ -18,5 +18,7 @@ module.exports = {
   rules: {
     "no-unused-vars": ["off", { vars: "local" }],
     allowImportExportEverywhere: 0,
+    "no-useless-escape": "off",
+    "no-empty": "off",
   },
 };

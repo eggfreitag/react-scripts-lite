@@ -7,13 +7,14 @@ const runCommand = (command) => {
   return true;
 };
 
-const esLintRcPath = path.join(
-  "node_modules/react-scripts-lite/config/eslint/.eslintrc.js"
-);
-const esLintIgnorePath = path.join(
-  "node_modules/react-scripts-lite/config/eslint/.eslintignore"
-);
+const esLintRcPath = path.join("./config/eslint/.eslintrc.js");
+const esLintIgnorePath = path.join("./config/eslint/.eslintignore");
 
-const lintCommand = `eslint -c ${esLintRcPath} --ignore-path ${esLintIgnorePath} --fix .`;
+const lintCommand = `eslint -c ${path.resolve(
+  process.cwd(),
+  esLintRcPath,
+)} --ignore-path ${path.resolve(process.cwd(), esLintIgnorePath)} --fix .`;
 
-runCommand(lintCommand);
+try {
+  runCommand(lintCommand);
+} catch (error) {}
