@@ -49,7 +49,7 @@ rl.question(
       }
     };
 
-    const ejectFiles = async (dirArray, callback) => {
+    const ejectFiles = async (dirArray) => {
       await dirArray.forEach((dir) => {
         fs.readdir(path.join(reactScriptLiteDir, dir), (err, filesArray) => {
           if (err) {
@@ -126,7 +126,9 @@ rl.question(
       console.clear();
       console.log("Ejected...");
     };
+
     ejectFiles(foldersToEject);
+
     rl.close();
   }
 );
