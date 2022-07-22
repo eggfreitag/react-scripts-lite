@@ -101,7 +101,7 @@ rl.question(
 
       changeFileContent(
         path.join(appDir, "package.json"),
-        /\"eject\"\: \"react-scripts-lite eject\"\,\n/,
+        /\"eject\"\: \"react-scripts-lite eject\"\,\n/g,
         ""
       );
       changeFileContent(
