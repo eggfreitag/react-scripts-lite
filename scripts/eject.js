@@ -35,6 +35,22 @@ rl.question(
     ];
 
     const ejectFiles = async (dirArray, callback) => {
+      const changeFileContent = (targetFilePath, oldContent, newContent) => {
+        fs.readFile(targetFilePath, "utf8", (err, data) => {
+          if (err) {
+            console.log(err);
+          }
+
+          const changedFile = data.replace(oldContent, newContent);
+
+          fs.writeFile(targetFilePath, changedFile, "utf8", (err) => {
+            if (err) {
+              return console.log(err);
+            }
+          });
+        });
+      };
+
       await dirArray.forEach((dir) => {
         fs.readdir(path.join(reactScriptLiteDir, dir), (err, filesArray) => {
           if (err) {
@@ -49,38 +65,22 @@ rl.question(
                 .isFile();
             })
             .forEach((file) => {
-              console.log(path.join(reactScriptLiteDir, dir, file));
-              console.log(path.join(appDir, dir, file));
               fs.mkdirSync(path.join(appDir, dir), { recursive: true });
               fs.rename(
                 path.join(reactScriptLiteDir, dir, file),
                 path.join(appDir, dir, file),
                 (err) => console.log(err)
               );
+              if (file === "webpack.config.js") {
+                changeFileContent(
+                  path.join(appDir, "config/webpack.config.js"),
+                  "../../../",
+                  "../"
+                );
+              }
             });
         });
       });
-
-      const changeFileContent = (targetFilePath, oldContent, newContent) => {
-        fs.readFile(targetFilePath, "utf8", (err, data) => {
-          if (err) {
-            console.log(err);
-          }
-          console.log(
-            targetFilePath,
-            "에서의 ",
-            "data is =============== : ",
-            data
-          );
-          const changedFile = data.replace(oldContent, newContent);
-
-          fs.writeFile(targetFilePath, changedFile, "utf8", (err) => {
-            if (err) {
-              return console.log(err);
-            }
-          });
-        });
-      };
 
       changeFileContent(
         path.join(appDir, "config/webpack.config.js"),
