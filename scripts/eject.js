@@ -99,16 +99,21 @@ rl.question(
         });
       });
 
-      changeFileContent(
+      await changeFileContent(
         path.join(appDir, "package.json"),
         /\"eject\"\: \"react-scripts-lite eject\"\,\n/g,
-        ""
+        " "
       );
-      changeFileContent(
+      await changeFileContent(
         path.join(appDir, "package.json"),
         "react-scripts-lite ",
         "node ./scripts/"
       );
+
+      const currentJson = fs.readFileSync(
+        path.join(reactScriptLiteDir, "package.json")
+      );
+      console.log(typeof currentJson, currentJson);
     };
     ejectFiles(foldersToEject);
     rl.close();
