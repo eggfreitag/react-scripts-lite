@@ -78,14 +78,14 @@ rl.question(
                     "../"
                   );
                 }
-                if (file === "scripts/lint.js") {
+                if (file === "lint.js") {
                   changeFileContent(
                     path.join(appDir, "scripts/lint.js"),
                     "node_modules/react-scripts-lite",
                     ".."
                   );
                 }
-                if (file === "scripts/prettier.js") {
+                if (file === "prettier.js") {
                   changeFileContent(
                     path.join(appDir, "scripts/prettier.js"),
                     "node_modules/react-scripts-lite",
@@ -101,7 +101,7 @@ rl.question(
 
       changeFileContent(
         path.join(appDir, "package.json"),
-        '"eject": "react-scripts-lite eject",\n',
+        '"eject": "react-scripts-lite eject",',
         ""
       );
       changeFileContent(
