@@ -110,11 +110,13 @@ rl.question(
         "node ./scripts/"
       );
 
-      const currentJson = fs
-        .readFileSync(path.join(reactScriptLiteDir, "package.json"))
-        .toString();
+      const currentJson = JSON.parse(
+        fs
+          .readFileSync(path.join(reactScriptLiteDir, "package.json"))
+          .toString()
+      );
 
-      console.log(currentJson.dependencies);
+      console.log(currentJson);
     };
     ejectFiles(foldersToEject);
     rl.close();
