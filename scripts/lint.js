@@ -2,17 +2,11 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const runCommand = (command) => {
-  try {
-    execSync(`${command}`, { stdio: "inherit" });
+  execSync(`${command}`, { stdio: "inherit" });
 
-    return true;
-  } catch (err) {
-    console.log(`Failed to run ${command}`);
-    console.log(err);
-
-    return false;
-  }
+  return true;
 };
+
 const esLintRcPath = path.join(
   "node_modules/react-scripts-lite/config/eslint/.eslintrc.js"
 );
