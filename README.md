@@ -9,8 +9,10 @@ React Scripts Lite는
 
 React Scripts Lite는 macOS를 기반으로 만들었습니다. 문제가 있다면, [Issue를 남겨주세요](https://github.com/eggfreitag/react-scripts-lite/issues/new). 궁금한점이 있다면 [GitHub Discussions](https://github.com/eggfreitag/react-scripts-lite/discussions/new)을 남겨주세요!
 
+---
 
-# 🚀 [`Create React App Lite`](https://github.com/eggfreitag/create-react-app-lite)
+
+## [`To Create React App Lite`](https://github.com/eggfreitag/create-react-app-lite) 🚀
 
 ## Quick Overview
 
