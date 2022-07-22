@@ -41,7 +41,7 @@ rl.question(
             console.log(err);
           }
 
-          const changedFile = data.replace(oldContent, newContent);
+          const changedFile = data.replaceAll(oldContent, newContent);
 
           fs.writeFile(targetFilePath, changedFile, "utf8", (err) => {
             if (err) {
