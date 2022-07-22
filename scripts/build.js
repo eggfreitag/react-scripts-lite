@@ -9,6 +9,9 @@ const compiler = webpack(webpackConfig);
 
 compiler.run((err, stats) => {
   if (err) {
+    if (err.includes(".env")) {
+      console.log("You have no .env file");
+    }
     console.log(err);
   }
 
