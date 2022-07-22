@@ -16,9 +16,9 @@ const port = parseInt(
 );
 
 const hasEnvFile = fs.existsSync(path.resolve(process.cwd(), ".env"));
-hasEnvFile ? webpackConfig.plugins.push(new DotenvWebpackPlugin()) : null;
-
 const webpackConfig = configFactory("development", port);
+
+hasEnvFile ? webpackConfig.plugins.push(new DotenvWebpackPlugin()) : null;
 const compiler = webpack(webpackConfig);
 const devServerOptions = { ...webpackConfig.devServer };
 const server = new WebpackDevServer(devServerOptions, compiler);
