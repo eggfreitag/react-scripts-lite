@@ -115,8 +115,11 @@ rl.question(
           .readFileSync(path.join(reactScriptLiteDir, "package.json"))
           .toString()
       );
+      const dependencies = currentJson.dependencies;
 
-      console.log(currentJson);
+      for (const key in dependencies) {
+        console.log(key);
+      }
     };
     ejectFiles(foldersToEject);
     rl.close();
