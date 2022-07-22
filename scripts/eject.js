@@ -82,14 +82,14 @@ rl.question(
                   changeFileContent(
                     path.join(appDir, "scripts/lint.js"),
                     "node_modules/react-scripts-lite",
-                    ".."
+                    "."
                   );
                 }
                 if (file === "prettier.js") {
                   changeFileContent(
                     path.join(appDir, "scripts/prettier.js"),
                     "node_modules/react-scripts-lite",
-                    ".."
+                    "."
                   );
                 }
               } catch (err) {

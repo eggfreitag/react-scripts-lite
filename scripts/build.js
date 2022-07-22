@@ -11,4 +11,8 @@ compiler.run((err, stats) => {
   if (err) {
     console.log(err);
   }
+
+  if (stats.errorCount === 0) {
+    console.log("webpack: Compiled Successfully");
+  }
 });
