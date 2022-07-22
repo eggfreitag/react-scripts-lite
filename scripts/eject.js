@@ -5,7 +5,7 @@ process.on("unhandledRejection", (err) => {
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
-const execSync = require("child_process").execSync;
+const spawnSync = require("child_process").spawnSync;
 
 const appDir = path.resolve(process.cwd());
 const reactScriptLiteDir = path.resolve(__dirname, "../");
@@ -117,9 +117,12 @@ rl.question(
       );
       const dependencies = currentJson.dependencies;
 
+      const packages = [];
       for (const key in dependencies) {
-        console.log(key);
+        packages.push(key);
       }
+
+      spawnSync("npm i -D", packages, { stdio: "inherit" });
     };
     ejectFiles(foldersToEject);
     rl.close();
