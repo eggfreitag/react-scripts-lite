@@ -34,22 +34,22 @@ rl.question(
       "scripts",
     ];
 
+    const changeFileContent = async (
+      targetFilePath,
+      oldContent,
+      newContent
+    ) => {
+      try {
+        const result = fs.readFileSync(targetFilePath, "utf8");
+        const changedFile = await result.replaceAll(oldContent, newContent);
+
+        fs.writeFileSync(targetFilePath, changedFile, "utf8");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     const ejectFiles = async (dirArray, callback) => {
-      const changeFileContent = async (
-        targetFilePath,
-        oldContent,
-        newContent
-      ) => {
-        try {
-          const result = fs.readFileSync(targetFilePath, "utf8");
-          const changedFile = await result.replaceAll(oldContent, newContent);
-
-          fs.writeFileSync(targetFilePath, changedFile, "utf8");
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
       await dirArray.forEach((dir) => {
         fs.readdir(path.join(reactScriptLiteDir, dir), (err, filesArray) => {
           if (err) {
@@ -64,32 +64,36 @@ rl.question(
                 .isFile();
             })
             .forEach((file) => {
-              fs.mkdirSync(path.join(appDir, dir), { recursive: true });
-              fs.rename(
-                path.join(reactScriptLiteDir, dir, file),
-                path.join(appDir, dir, file),
-                (err) => console.log(err)
-              );
-              if (file === "webpack.config.js") {
-                changeFileContent(
-                  path.join(appDir, "config/webpack.config.js"),
-                  "../../../",
-                  "../"
+              try {
+                fs.mkdirSync(path.join(appDir, dir), { recursive: true });
+                fs.renameSync(
+                  path.join(reactScriptLiteDir, dir, file),
+                  path.join(appDir, dir, file)
                 );
-              }
-              if (file === "scripts/lint.js") {
-                changeFileContent(
-                  path.join(appDir, "scripts/lint.js"),
-                  "node_modules/react-scripts-lite",
-                  ".."
-                );
-              }
-              if (file === "scripts/prettier.js") {
-                changeFileContent(
-                  path.join(appDir, "scripts/prettier.js"),
-                  "node_modules/react-scripts-lite",
-                  ".."
-                );
+
+                if (file === "webpack.config.js") {
+                  changeFileContent(
+                    path.join(appDir, "config/webpack.config.js"),
+                    "../../../",
+                    "../"
+                  );
+                }
+                if (file === "scripts/lint.js") {
+                  changeFileContent(
+                    path.join(appDir, "scripts/lint.js"),
+                    "node_modules/react-scripts-lite",
+                    ".."
+                  );
+                }
+                if (file === "scripts/prettier.js") {
+                  changeFileContent(
+                    path.join(appDir, "scripts/prettier.js"),
+                    "node_modules/react-scripts-lite",
+                    ".."
+                  );
+                }
+              } catch (err) {
+                console.log(err);
               }
             });
         });
