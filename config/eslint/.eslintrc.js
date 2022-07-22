@@ -1,7 +1,7 @@
 module.exports = {
   extends: ["eslint:recommended", "plugin:prettier/recommended"],
   plugins: ["react", "prettier"],
-  ignorePatterns: ["../../node_modules/**"],
+  ignorePatterns: ["**/node_modules/**"],
   env: {
     browser: true,
     jest: true,

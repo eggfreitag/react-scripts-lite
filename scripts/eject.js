@@ -60,7 +60,49 @@ rl.question(
             });
         });
       });
+
+      const changeFileContent = (targetFilePath, oldContent, newContent) => {
+        fs.readFile(targetFilePath, "utf8", (err, data) => {
+          if (err) {
+            console.log(err);
+          }
+
+          const changedFile = data.replace(oldContent, newContent);
+
+          fs.writeFile(targetFilePath, changedFile, "utf8", (err) => {
+            if (err) {
+              return console.log(err);
+            }
+          });
+        });
+      };
     };
+
+    changeFileContent(
+      path.join(appDir, "config/webpack.config.js"),
+      "../../../",
+      "../"
+    );
+    changeFileContent(
+      path.join(appDir, "scripts/lint.js"),
+      "node_modules/react-scripts-lite",
+      ".."
+    );
+    changeFileContent(
+      path.join(appDir, "scripts/prettier.js"),
+      "node_modules/react-scripts-lite",
+      ".."
+    );
+    changeFileContent(
+      path.join(appDir, "package.json"),
+      '"eject": "react-scripts-lite eject",\n',
+      ""
+    );
+    changeFileContent(
+      path.join(appDir, "package.json"),
+      "react-scripts-lite ",
+      "node ./scripts/"
+    );
 
     ejectFiles(foldersToEject);
     rl.close();
