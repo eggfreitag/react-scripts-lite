@@ -35,20 +35,19 @@ rl.question(
     ];
 
     const ejectFiles = async (dirArray, callback) => {
-      const changeFileContent = (targetFilePath, oldContent, newContent) => {
-        fs.readFile(targetFilePath, "utf8", (err, data) => {
-          if (err) {
-            console.log(err);
-          }
+      const changeFileContent = async (
+        targetFilePath,
+        oldContent,
+        newContent
+      ) => {
+        try {
+          const result = fs.readFileSync(targetFilePath, "utf8");
+          const changedFile = await result.replaceAll(oldContent, newContent);
 
-          const changedFile = data.replaceAll(oldContent, newContent);
-
-          fs.writeFile(targetFilePath, changedFile, "utf8", (err) => {
-            if (err) {
-              return console.log(err);
-            }
-          });
-        });
+          fs.writeFileSync(targetFilePath, changedFile, "utf8");
+        } catch (err) {
+          console.log(err);
+        }
       };
 
       await dirArray.forEach((dir) => {
