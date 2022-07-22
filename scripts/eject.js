@@ -66,7 +66,12 @@ rl.question(
           if (err) {
             console.log(err);
           }
-
+          console.log(
+            targetFilePath,
+            "에서의 ",
+            "data is =============== : ",
+            data
+          );
           const changedFile = data.replace(oldContent, newContent);
 
           fs.writeFile(targetFilePath, changedFile, "utf8", (err) => {
