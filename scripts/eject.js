@@ -78,25 +78,24 @@ rl.question(
                   "../"
                 );
               }
+              if (file === "scripts/lint.js") {
+                changeFileContent(
+                  path.join(appDir, "scripts/lint.js"),
+                  "node_modules/react-scripts-lite",
+                  ".."
+                );
+              }
+              if (file === "scripts/prettier.js") {
+                changeFileContent(
+                  path.join(appDir, "scripts/prettier.js"),
+                  "node_modules/react-scripts-lite",
+                  ".."
+                );
+              }
             });
         });
       });
 
-      changeFileContent(
-        path.join(appDir, "config/webpack.config.js"),
-        "../../../",
-        "../"
-      );
-      changeFileContent(
-        path.join(appDir, "scripts/lint.js"),
-        "node_modules/react-scripts-lite",
-        ".."
-      );
-      changeFileContent(
-        path.join(appDir, "scripts/prettier.js"),
-        "node_modules/react-scripts-lite",
-        ".."
-      );
       changeFileContent(
         path.join(appDir, "package.json"),
         '"eject": "react-scripts-lite eject",\n',
@@ -108,7 +107,6 @@ rl.question(
         "node ./scripts/"
       );
     };
-
     ejectFiles(foldersToEject);
     rl.close();
   }
