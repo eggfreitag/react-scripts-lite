@@ -34,20 +34,13 @@ rl.question(
       "scripts",
     ];
 
-    // foldersToEject.forEach((folder) => {
-    //   fs.mkdirSync(path.resolve(appDir, folder));
-    // });
-
-    const readFiles = async (dirArray, callback) => {
+    const ejectFiles = async (dirArray, callback) => {
       dirArray.forEach((dir) => {
         fs.readdir(path.join(reactScriptLiteDir, dir), (err, filesArray) => {
           if (err) {
             console.log(err);
             return;
           }
-
-          // console.log("------", path.join(appDir, dir)); //이대로 폴더 만들면 된다
-          // console.log(filesArray);
 
           filesArray
             .filter((file) => {
@@ -65,55 +58,11 @@ rl.question(
                 (err) => console.log(err)
               );
             });
-
-          // filesArray
-          //   .filter((file) => {
-          //     if (file === ".eslintignore") {
-          //       return file;
-          //     }
-          //     if (file === "eslint") {
-          //       return file;
-          //     }
-          //     fs.lstatSync(file).isFile();
-          //   })
-          //   .forEach((file) => {
-          //     console.log(
-          //       path.resolve(path.resolve(reactScriptLiteDir, dir), file)
-          //     );
-
-          // fs.readFile(
-          //   path.resolve(path.resolve(reactScriptLiteDir, dir), file),
-          //   "utf8",
-          //   (err, content) => {
-          //     if (err) {
-          //       console.log(err);
-          //       return;
-          //     }
-          //     console.log(content.slice(0, 30));
-          //     // callback(
-          //     //   path.join(path.join(reactScriptLiteDir, dir), file),
-          //     //   content
-          //     // );
-          //     // callback (oldPath, content=내용)
-          // });
         });
       });
     };
 
-    readFiles(foldersToEject);
-
-    const a = (oldPath, content) => {};
-
-    // fs.readFileSync(
-    //   path.resolve(appDir, "/node_modules/react-scripts-lite/config/env.js"),
-    //   "utf8",
-    //   (err, data) => {
-    //     if (err) {
-    //       console.error(err);
-    //     }
-    //     console.log("데이터 : >> ", data);
-    //   }
-    // );
+    ejectFiles(foldersToEject);
     rl.close();
   }
 );
