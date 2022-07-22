@@ -1,25 +1,20 @@
 const path = require("path");
-const { execSync } = require("child_process");
+const execSync = require("child_process").execSync;
 
 const runCommand = (command) => {
-  try {
-    execSync(`${command}`, { stdio: "inherit" });
+  execSync(`${command}`, { stdio: "inherit" });
 
-    return true;
-  } catch (err) {
-    console.log(`Failed to run ${command}`);
-    console.log(err);
-
-    return false;
-  }
+  return true;
 };
-const esLintRcPath = path.join(
-  "node_modules/react-scripts-lite/config/eslint/.eslintrc.js"
-);
-const esLintIgnorePath = path.join(
-  "node_modules/react-scripts-lite/config/eslint/.eslintignore"
-);
 
-const lintCommand = `eslint -c ${esLintRcPath} --ignore-path ${esLintIgnorePath} --fix .`;
+const esLintRcPath = path.join("./config/eslint/.eslintrc.js");
+const esLintIgnorePath = path.join("./config/eslint/.eslintignore");
 
-runCommand(lintCommand);
+const lintCommand = `eslint -c ${path.resolve(
+  process.cwd(),
+  esLintRcPath,
+)} --ignore-path ${path.resolve(process.cwd(), esLintIgnorePath)} --fix .`;
+
+try {
+  runCommand(lintCommand);
+} catch (error) {}

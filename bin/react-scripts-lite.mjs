@@ -17,6 +17,7 @@ const scriptIndex = args.findIndex(
     script === "build" ||
     script === "test" ||
     script === "lint" ||
+    script === "eject" ||
     script === "prettier"
 );
 const script = scriptIndex === -1 ? null : args[scriptIndex];
