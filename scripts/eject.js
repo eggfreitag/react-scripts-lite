@@ -35,7 +35,7 @@ rl.question(
     ];
 
     const ejectFiles = async (dirArray, callback) => {
-      dirArray.forEach((dir) => {
+      await dirArray.forEach((dir) => {
         fs.readdir(path.join(reactScriptLiteDir, dir), (err, filesArray) => {
           if (err) {
             console.log(err);
@@ -76,33 +76,33 @@ rl.question(
           });
         });
       };
-    };
 
-    changeFileContent(
-      path.join(appDir, "config/webpack.config.js"),
-      "../../../",
-      "../"
-    );
-    changeFileContent(
-      path.join(appDir, "scripts/lint.js"),
-      "node_modules/react-scripts-lite",
-      ".."
-    );
-    changeFileContent(
-      path.join(appDir, "scripts/prettier.js"),
-      "node_modules/react-scripts-lite",
-      ".."
-    );
-    changeFileContent(
-      path.join(appDir, "package.json"),
-      '"eject": "react-scripts-lite eject",\n',
-      ""
-    );
-    changeFileContent(
-      path.join(appDir, "package.json"),
-      "react-scripts-lite ",
-      "node ./scripts/"
-    );
+      changeFileContent(
+        path.join(appDir, "config/webpack.config.js"),
+        "../../../",
+        "../"
+      );
+      changeFileContent(
+        path.join(appDir, "scripts/lint.js"),
+        "node_modules/react-scripts-lite",
+        ".."
+      );
+      changeFileContent(
+        path.join(appDir, "scripts/prettier.js"),
+        "node_modules/react-scripts-lite",
+        ".."
+      );
+      changeFileContent(
+        path.join(appDir, "package.json"),
+        '"eject": "react-scripts-lite eject",\n',
+        ""
+      );
+      changeFileContent(
+        path.join(appDir, "package.json"),
+        "react-scripts-lite ",
+        "node ./scripts/"
+      );
+    };
 
     ejectFiles(foldersToEject);
     rl.close();
